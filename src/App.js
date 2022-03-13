@@ -60,6 +60,9 @@ function Gallery() {
     const {isLoading, data, error, isFetching} = useNFTs();
 
     useEffect(() => {
+        if (currentNFTIdx == Number(data?.assets.length)) {
+            setCurrentNFTIdx(0);
+        }
         if (currentNFTIdx >= 0) {
             setCurrentNFT(data?.assets[currentNFTIdx]);
         } else {
@@ -76,7 +79,7 @@ function Gallery() {
     if (error) {
         return (<Alert severity="error">{error.message}</Alert>)
     }
-    // console.log(currentNFT)
+    console.log(currentNFTIdx)
     return (
         <Box sx={{flexGrow: 1}}>
             <br/>
@@ -144,8 +147,8 @@ function Gallery() {
 
                     <Typography component="div" gutterBottom variant={'h5'} justifyContent={'center'}
                                 textAlign={'center'}>
-                        Last Sold Price: {Number(currentNFT?.last_sale?.payment_token?.eth_price).toFixed(2)} ETH /
-                        ${Number(currentNFT?.last_sale?.payment_token?.usd_price).toFixed(2)}</Typography>
+                        Last Sold Price: {(Number(currentNFT?.last_sale?.total_price) / 1e18).toFixed(2)} ETH /
+                        ${(Number(currentNFT?.last_sale?.payment_token?.usd_price) * (Number(currentNFT?.last_sale?.total_price) / 1e18)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Typography>
                 </DialogContent>
             </Dialog>
             <ReactQueryDevtools initialIsOpen/>
