@@ -79,7 +79,7 @@ function Gallery() {
     if (error) {
         return (<Alert severity="error">{error.message}</Alert>)
     }
-    console.log(currentNFTIdx)
+    // console.log(currentNFTIdx)
     return (
         <Box sx={{flexGrow: 1}}>
             <br/>
