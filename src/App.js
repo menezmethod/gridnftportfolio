@@ -107,7 +107,7 @@ function Gallery() {
                             </div>
                         </NFT>
                     </Grid>
-                ))}}
+                ))}
             </Grid>
             <Dialog
                 open={open}
