@@ -84,7 +84,7 @@ function Gallery() {
                 <strong>NFT Gallery</strong>
             </Typography>
             <Grid container spacing={{xs: 1, md: 1}} columns={{xs: 2, sm: 4, md: 10}} justifyContent={'center'}>
-                {!isFetching && data.assets.map((_, index) => (
+                {!isLoading && data?.assets.map((_, index) => (
                     <Grid item key={index}>
                         <NFT elevation={0} direction="column">
                             <div id="zoom_img">
@@ -92,7 +92,7 @@ function Gallery() {
                                     <Link onClick={() => setCurrentNFT(data?.assets[index])}>
                                         <img
                                             onClick={() => setCurrentNFTIdx(index)}
-                                            src={data?.assets[index]?.image_url} alt={data?.assets[index]?.name}/>
+                                            src={data?.assets[index]?.image_url} alt={data?.assets[index]?.name} loading={'lazy'}/>
                                     </Link>
                                     <div className="imgText justify-content-center m-auto">
                                         <h2>{data?.assets[index]?.name}</h2>
@@ -106,7 +106,7 @@ function Gallery() {
                             </div>
                         </NFT>
                     </Grid>
-                ))}
+                ))}}
             </Grid>
             <Dialog
                 open={open}
