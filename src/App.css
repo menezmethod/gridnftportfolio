@@ -1,8 +1,8 @@
-#grow {
+#zoom_img {
     overflow: hidden;
 }
 
-#grow img {
+#zoom_img img {
     /* */
     -webkit-transition: all 2s ease;
     -moz-transition: all .5s ease;
@@ -17,7 +17,7 @@
     -ms-filter: blur(0px);
 }
 
-#grow img:hover {
+#zoom_img img:hover {
     -moz-transform: scale(2.5);
     -webkit-transform: scale(2.5);
     -o-transform: scale(2.5);
@@ -27,6 +27,7 @@
     -ms-filter: blur(100px);
     -webkit-filter: grayscale(0);
     opacity: 0.1;
+    cursor: pointer;
 }
 
 .ml-4 {
@@ -53,7 +54,11 @@
     transition: all 0.5s ease;
 }
 
-#grow:hover .imgText {
+#zoom_img:hover .imgText {
     opacity: 1;
     font-size: 1vw;
+}
+
+.nft {
+    overflow: hidden;
 }

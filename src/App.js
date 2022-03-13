@@ -9,6 +9,7 @@ import {
     Dialog,
     DialogContent,
     DialogTitle,
+    IconButton,
     Link,
     Typography,
     useMediaQuery,
@@ -86,7 +87,7 @@ function Gallery() {
                 {data.assets?.map((_, index) => (
                     <Grid item key={index}>
                         <NFT elevation={0} direction="column">
-                            <div id="grow">
+                            <div id="zoom_img">
                                 <div className="ml-4 imgList" onClick={handleOpen}>
                                     <Link onClick={() => setCurrentNFT(data?.assets[index])}>
                                         <img
@@ -124,9 +125,19 @@ function Gallery() {
                         <img src={currentNFT?.image_url} alt={currentNFT?.name}/>
                         <br/>
                         <br/>
-                        <Link
-                            onClick={() => setCurrentNFTIdx(currentNFTIdx - 1)}><ArrowBackIosNewIcon/></Link>{' '}{' '}{' '}
-                        <Link onClick={() => setCurrentNFTIdx(currentNFTIdx + 1)}><ArrowForwardIosIcon/></Link>
+                        <Grid container rowSpacing={1} columnSpacing={{xs: 1, sm: 2, md: 3}}>
+                            <Grid item xs={6}>
+                                <IconButton aria-label="previous" onClick={() => setCurrentNFTIdx(currentNFTIdx - 1)}>
+                                    <ArrowBackIosNewIcon/>
+                                </IconButton>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <IconButton aria-label="previous" onClick={() => setCurrentNFTIdx(currentNFTIdx + 1)}>
+                                    <ArrowForwardIosIcon/>
+                                </IconButton>
+                            </Grid>
+                        </Grid>
+
                     </Typography>
                 </DialogContent>
             </Dialog>
