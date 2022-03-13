@@ -14,9 +14,7 @@
     -webkit-filter: blur(0);
     -moz-filter: blur(0);
     -o-filter: blur(0);
-    -ms-filter: blur(0);
     -ms-filter: blur(0px);
-    /*filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='0'); */
 }
 
 #grow img:hover {
@@ -24,18 +22,12 @@
     -webkit-transform: scale(2.5);
     -o-transform: scale(2.5);
     transform: scale(2.5);
-    filter: blur(10px);
-    -webkit-filter: blur(10px);
     -moz-filter: blur(100px);
     -o-filter: blur(100px);
     -ms-filter: blur(100px);
-    filter: url(#blur1);
     -webkit-filter: grayscale(0);
-    opacity: 0;
-    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='5');
-
+    opacity: 0.1;
 }
-
 
 .ml-4 {
     position: relative;
@@ -64,14 +56,4 @@
 #grow:hover .imgText {
     opacity: 1;
     font-size: 1vw;
-
-}
-
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
 }

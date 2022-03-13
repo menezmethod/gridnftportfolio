@@ -10,6 +10,7 @@ import {
     DialogContent,
     DialogContentText,
     DialogTitle,
+    Link,
     Typography
 } from "@mui/material";
 import {QueryClient, QueryClientProvider, useQuery} from "react-query";
@@ -50,7 +51,6 @@ function Gallery() {
     if (isLoading) return (<Backdrop
         sx={{color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1}}
         open={open}
-        onClick={handleClose}
     >
         <CircularProgress color="inherit"/>
     </Backdrop>);
@@ -69,7 +69,7 @@ function Gallery() {
                         <Item elevation={0} direction="column">
                             <div id="grow">
                                 <div className="ml-4 imgList">
-                                    <a href={'#'} onClick={handleOpen}><img src={data?.assets[index].image_url}/></a>
+                                    <Link onClick={handleOpen}><img src={data?.assets[index].image_url}/></Link>
                                     <div className="imgText justify-content-center m-auto">
                                         <h2>{data?.assets[index]?.name}</h2>
                                     </div>
