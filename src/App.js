@@ -81,7 +81,7 @@ function Gallery() {
         <Box sx={{flexGrow: 1}}>
             <br/>
             <Typography variant="h2" component="div" gutterBottom align={'center'}>
-                <strong>Menez NFT Gallery</strong>
+                <strong>NFT Gallery</strong>
             </Typography>
             <Grid container spacing={{xs: 1, md: 1}} columns={{xs: 2, sm: 4, md: 10}} justifyContent={'center'}>
                 {data.assets?.map((_, index) => (
