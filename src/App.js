@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import {
+    Alert,
     Dialog,
     DialogContent,
     DialogTitle,
@@ -23,10 +24,10 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 const NFT = styled(Paper)(() => ({
     textAlign: 'center',
-    height: '375px', width: '375px',
+    height: '350px', width: '350px',
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center"
+    justifyContent: "center",
 }));
 
 const queryClient = new QueryClient();
@@ -39,6 +40,15 @@ export default function App() {
     );
 }
 
+function useNFTs() {
+    return useQuery("NFTData", async () => {
+        const {data} = await axios.get(
+            "https://api.opensea.io/api/v1/assets?format=json"
+        );
+        return data;
+    });
+}
+
 function Gallery() {
     const [open, setOpen] = useState(false);
     const [currentNFT, setCurrentNFT] = useState([]);
@@ -47,12 +57,7 @@ function Gallery() {
     const handleClose = () => setOpen(false);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
-
-    const {isLoading, error, data, isFetching} = useQuery("NFTRepo", () =>
-        axios.get(
-            "https://api.opensea.io/api/v1/assets?format=json"
-        ).then((res) => res.data)
-    );
+    const {isLoading, data, error, isFetching} = useNFTs();
 
     useEffect(() => {
         if (currentNFTIdx >= 0) {
@@ -62,19 +67,14 @@ function Gallery() {
         }
     }, [currentNFTIdx, data?.assets]);
 
-    if (isLoading) {
-        return (
-            <LinearProgress/>
-        );
-    }
-    if (isFetching) {
+    if (isLoading || isFetching) {
         return (
             <LinearProgress/>
         );
     }
 
     if (error) {
-        return "An error has occurred: " + error.message;
+        return (<Alert severity="error">{error.message}</Alert>)
     }
     // console.log(currentNFT)
     return (
@@ -84,7 +84,7 @@ function Gallery() {
                 <strong>NFT Gallery</strong>
             </Typography>
             <Grid container spacing={{xs: 1, md: 1}} columns={{xs: 2, sm: 4, md: 10}} justifyContent={'center'}>
-                {data.assets?.map((_, index) => (
+                {!isFetching && data.assets.map((_, index) => (
                     <Grid item key={index}>
                         <NFT elevation={0} direction="column">
                             <div id="zoom_img">
@@ -92,7 +92,7 @@ function Gallery() {
                                     <Link onClick={() => setCurrentNFT(data?.assets[index])}>
                                         <img
                                             onClick={() => setCurrentNFTIdx(index)}
-                                            src={data?.assets[index].image_url} alt={data?.assets[index]?.name}/>
+                                            src={data?.assets[index]?.image_url} alt={data?.assets[index]?.name}/>
                                     </Link>
                                     <div className="imgText justify-content-center m-auto">
                                         <h2>{data?.assets[index]?.name}</h2>
