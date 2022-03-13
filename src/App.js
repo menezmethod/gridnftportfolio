@@ -92,7 +92,8 @@ function Gallery() {
                                     <Link onClick={() => setCurrentNFT(data?.assets[index])}>
                                         <img
                                             onClick={() => setCurrentNFTIdx(index)}
-                                            src={data?.assets[index]?.image_url} alt={data?.assets[index]?.name} loading={'lazy'}/>
+                                            src={data?.assets[index]?.image_url} alt={data?.assets[index]?.name}
+                                            loading={'lazy'}/>
                                     </Link>
                                     <div className="imgText justify-content-center m-auto">
                                         <h2>{data?.assets[index]?.name}</h2>
@@ -118,11 +119,13 @@ function Gallery() {
                 fullScreen={fullScreen}
             >
                 <DialogTitle id="nft_dialog_title">
-                    {currentNFT?.name}
+                    BAYC #{currentNFT?.token_id}
                 </DialogTitle>
                 <DialogContent>
                     <Typography component="div" gutterBottom align={'center'}>
-                        <img src={currentNFT?.image_url} alt={currentNFT?.name}/>
+                        <Link href={currentNFT?.permalink} target={'_blank'}>
+                            <img src={currentNFT?.image_url} alt={currentNFT?.token_id}/>
+                        </Link>
                         <br/>
                         <br/>
                         <Grid container rowSpacing={1} columnSpacing={{xs: 1, sm: 2, md: 3}}>
@@ -134,11 +137,15 @@ function Gallery() {
                             <Grid item xs={6}>
                                 <IconButton aria-label="previous" onClick={() => setCurrentNFTIdx(currentNFTIdx + 1)}>
                                     <ArrowForwardIosIcon/>
-                                </IconButton>
+                                </IconButton><br/>
                             </Grid>
                         </Grid>
+                    </Typography> <br/>
 
-                    </Typography>
+                    <Typography component="div" gutterBottom variant={'h5'} justifyContent={'center'}
+                                textAlign={'center'}>
+                        Last Sold Price: {Number(currentNFT?.last_sale?.payment_token?.eth_price).toFixed(2)} ETH /
+                        ${Number(currentNFT?.last_sale?.payment_token?.usd_price).toFixed(2)}</Typography>
                 </DialogContent>
             </Dialog>
             <ReactQueryDevtools initialIsOpen/>
