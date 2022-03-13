@@ -60,7 +60,7 @@ function Gallery() {
     const {isLoading, data, error, isFetching} = useNFTs();
 
     useEffect(() => {
-        if (currentNFTIdx == Number(data?.assets.length)) {
+        if (currentNFTIdx === Number(data?.assets.length)) {
             setCurrentNFTIdx(0);
         }
         if (currentNFTIdx >= 0) {
