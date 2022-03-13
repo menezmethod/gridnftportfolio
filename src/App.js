@@ -43,7 +43,7 @@ export default function App() {
 function useNFTs() {
     return useQuery("NFTData", async () => {
         const {data} = await axios.get(
-            "https://api.opensea.io/api/v1/assets?format=json"
+            "https://api.opensea.io/api/v1/assets?collection_slug=boredapeyachtclub"
         );
         return data;
     });
