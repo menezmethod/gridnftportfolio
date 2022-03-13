@@ -21,7 +21,7 @@ import './App.css'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
-const NFT = styled(Paper)(({theme}) => ({
+const NFT = styled(Paper)(() => ({
     textAlign: 'center',
     height: '375px', width: '375px',
     display: "flex",
@@ -48,20 +48,21 @@ function Gallery() {
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
-
     const {isLoading, error, data, isFetching} = useQuery("NFTRepo", () =>
         axios.get(
             "https://api.opensea.io/api/v1/assets?format=json"
         ).then((res) => res.data)
     );
+
     useEffect(() => {
         if (currentNFTIdx >= 0) {
             setCurrentNFT(data?.assets[currentNFTIdx]);
         } else {
             setCurrentNFTIdx(0);
         }
-    }, [currentNFTIdx]);
-    if (isLoading) {
+    }, [currentNFTIdx, data?.assets]);
+
+    if (isLoading || isFetching) {
         return (
             <Backdrop
                 sx={{color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1}}
@@ -120,7 +121,7 @@ function Gallery() {
                 </DialogTitle>
                 <DialogContent>
                     <Typography component="div" gutterBottom align={'center'}>
-                        <img src={currentNFT?.image_url}/>
+                        <img src={currentNFT?.image_url} alt={currentNFT?.name}/>
                         <br/>
                         <br/>
                         <Link
