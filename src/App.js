@@ -4,12 +4,11 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import {
-    Backdrop,
-    CircularProgress,
     Dialog,
     DialogContent,
     DialogTitle,
     IconButton,
+    LinearProgress,
     Link,
     Typography,
     useMediaQuery,
@@ -63,14 +62,15 @@ function Gallery() {
         }
     }, [currentNFTIdx, data?.assets]);
 
-    if (isLoading || isFetching) {
+    if (isLoading) {
         return (
-            <Backdrop
-                sx={{color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1}}
-                open={open}
-            >
-                <CircularProgress color="inherit"/>
-            </Backdrop>);
+            <LinearProgress/>
+        );
+    }
+    if (isFetching) {
+        return (
+            <LinearProgress/>
+        );
     }
 
     if (error) {
