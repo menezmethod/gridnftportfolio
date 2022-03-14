@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import {
-    Alert,
+    Alert, CircularProgress,
     Dialog,
     DialogContent,
     DialogTitle,
@@ -21,6 +21,8 @@ import axios from "axios";
 import './App.css'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import LazyLoad from 'react-lazyload';
+
 
 const NFT = styled(Paper)(() => ({
     textAlign: 'center',
@@ -93,10 +95,12 @@ function Gallery() {
                             <div id="zoom_img">
                                 <div className="ml-4 imgList" onClick={handleOpen}>
                                     <Link onClick={() => setCurrentNFT(data?.assets[index])}>
+                                        <LazyLoad height={350} placeholder={<CircularProgress />} once key={index} >
                                         <img
                                             onClick={() => setCurrentNFTIdx(index)}
                                             src={data?.assets[index]?.image_url} alt={data?.assets[index]?.name}
                                             loading={'lazy'}/>
+                                        </LazyLoad>
                                     </Link>
                                     <div className="imgText justify-content-center m-auto">
                                         <h2>BAYC #{currentNFT?.token_id}</h2>
@@ -127,7 +131,9 @@ function Gallery() {
                 <DialogContent>
                     <Typography component="div" gutterBottom align={'center'}>
                         <Link href={currentNFT?.permalink} target={'_blank'}>
+                            <LazyLoad>
                             <img src={currentNFT?.image_url} alt={currentNFT?.token_id}/>
+                            </LazyLoad>
                         </Link>
                         <br/>
                         <br/>
