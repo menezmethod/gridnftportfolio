@@ -103,7 +103,7 @@ function Gallery() {
                                         </LazyLoad>
                                     </Link>
                                     <div className="imgText justify-content-center m-auto">
-                                        <h2>BAYC #{currentNFT?.token_id}</h2>
+                                        <h2>BAYC #{data?.assets[index]?.token_id}</h2>
                                     </div>
                                 </div>
                                 <svg xmlns="http://www.w3.org/2000/svg">
