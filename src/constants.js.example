@@ -1,0 +1,4 @@
+export const OPENSEA_API_KEY = 'your_opensea_api_key_here';
+export const CRYPTOCOMPARE_API_KEY = 'your_cryptocompare_api_key_here';
+export const COLLECTION_SLUG = 'your_collection_slug_here';
+export const CONTRACT_ADDRESS = 'your_contract_address_here';
