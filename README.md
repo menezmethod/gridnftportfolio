@@ -1,17 +1,51 @@
-# Very Simple NFT Gallery
+# NFT Gallery
 
-Very simple NFT gallery that grabs data from [OpenSea API](https://api.opensea.io/api/v1/assets?format=json) and
-displays it.
+This project is a React-based NFT gallery that displays and allows interaction with NFTs from the Bored Ape Yacht Club collection.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Displays a grid of NFT images
+- Infinite scrolling to load more NFTs
+- Detailed view for each NFT, including traits and best offer
+- Navigation between NFTs in the detailed view
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone the repository
+2. Run `npm install` to install dependencies
+3. Run `npm start` to start the development server
 
-### Live Demo
+## Technologies Used
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/548df7ec-8145-4906-9e31-236bb16a9d9a/deploy-status)](https://vigorous-mirzakhani-fd9b7c.netlify.app/)
+- React
+- Material-UI
+- React Query
+- Axios
+
+## Project Structure
+
+- `src/components`: React components
+- `src/hooks`: Custom React hooks
+- `src/services`: API services
+- `src/utils`: Utility functions
+- `src/constants.js`: Constant values used throughout the app
+- `src/Gallery.js`: Main gallery component
+- `src/App.js`: Root component
+
+## API
+
+This project uses the OpenSea API. You will need to provide your own API key in the `src/constants.js` file.
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## Author
+
+Luis Gimenez
+- Email: luisgimenezdev@gmail.com
+- GitHub: [menezmethod](https://github.com/menezmethod)
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
