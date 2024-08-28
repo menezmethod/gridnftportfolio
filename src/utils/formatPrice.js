@@ -1,0 +1,1 @@
+export const formatPrice = (value, decimals) => (parseFloat(value) / Math.pow(10, decimals)).toFixed(4);
